@@ -5,14 +5,11 @@ def check_draw(board):
     return True
 
 def check_win(board):
-    # Check rows and columns
     for i in range(3):
         if board[i][0] == board[i][1] == board[i][2] != '_':
             return board[i][0], True
         if board[0][i] == board[1][i] == board[2][i] != '_':
             return board[0][i], True
-    
-    # Check diagonals
     if board[0][0] == board[1][1] == board[2][2] != '_':
         return board[0][0], True
     if board[0][2] == board[1][1] == board[2][0] != '_':
@@ -21,11 +18,6 @@ def check_win(board):
     return None, False
 
 gameboard = [['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']]
-
-# for row in gameboard:
-#     for dot in row:
-#         print(dot, end=' ')
-#     print()
 
 turn = True
 while True:
@@ -80,14 +72,10 @@ while True:
             else:
                 continue
         turn = True
-
-    # Check for a win after each turn
     winner, is_win = check_win(gameboard)
     if is_win:
         print(f"{winner} wins!")
         break
-
-    # Check for a draw
     if check_draw(gameboard):
         print("It's a draw!")
         break
